@@ -35,6 +35,20 @@ html {
     scroll-behavior: smooth;
 }
 
+/* Font display optimization - prevents invisible text during font load */
+@font-face {
+    font-family: 'Lato';
+    font-display: swap;
+}
+@font-face {
+    font-family: 'Arvo';
+    font-display: swap;
+}
+@font-face {
+    font-family: 'Merriweather';
+    font-display: swap;
+}
+
 body {
     font-family: 'Lato', 'Helvetica Neue', Arial, sans-serif;
     line-height: 1.6;
@@ -44,6 +58,15 @@ body {
     font-weight: 400;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    /* Performance optimizations */
+    text-rendering: optimizeLegibility;
+}
+
+/* Image optimization */
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
 }
 
 .container {
@@ -448,6 +471,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .service-card:hover .service-card-image img {
     transform: scale(1.05);
+    will-change: transform;
 }
 
 .service-card-image a {
@@ -943,6 +967,7 @@ button:focus {
 .whatsapp-float:hover {
     transform: scale(1.1);
     box-shadow: 0 6px 16px rgba(37, 211, 102, 0.6);
+    will-change: transform;
 }
 
 .whatsapp-float svg {
