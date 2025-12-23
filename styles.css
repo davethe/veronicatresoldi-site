@@ -12,20 +12,41 @@
     box-sizing: border-box;
 }
 
+/* Skip to main content link for accessibility */
+.skip-link {
+    position: absolute;
+    top: -40px;
+    left: 0;
+    background: var(--primary-color);
+    color: var(--text-white);
+    padding: 8px 16px;
+    text-decoration: none;
+    z-index: 10000;
+    border-radius: 0 0 4px 0;
+    font-family: 'Lato', sans-serif;
+    font-weight: 700;
+}
+
+.skip-link:focus {
+    top: 0;
+    outline: 3px solid var(--text-white);
+    outline-offset: 2px;
+}
+
 :root {
-    /* Colori dal sito originale */
-    --primary-color: #477560;
-    --primary-dark: #3a6150;
-    --primary-hover: #5a8a73;
+    /* Colori ufficiali dal logo */
+    --primary-color: #1a3d2e; /* Dark teal green - background logo */
+    --primary-dark: #0f2a1f;
+    --primary-hover: #2d4a3f;
     --text-color: #212121;
     --text-light: #444444;
     --text-white: #ffffff;
     --bg-color: #ffffff;
     --bg-alt: #f0f0f0;
-    --bg-dark: #3a3a3a;
+    --bg-dark: #2d2d2d; /* Dark gray dal logo */
     --border-color: #cccccc;
     --hero-text-pink: #f2dede;
-    --hero-subtitle-pink: #e8b5b5;
+    --hero-subtitle-pink: #e8b5b5; /* Light pink dal logo */
     --shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
     --shadow-hover: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
     --transition: all 0.3s ease;
@@ -278,7 +299,7 @@ h1, h2, h3, h4, h5, h6 {
     font-family: 'Merriweather', Georgia, serif;
     font-size: 18pt;
     font-weight: 700;
-    color: var(--hero-subtitle-pink);
+    color: #c97a7a; /* Darker pink for better contrast (WCAG AA compliant) */
     line-height: 1.38;
 }
 
@@ -324,6 +345,10 @@ h1, h2, h3, h4, h5, h6 {
     font-family: 'Lato', sans-serif;
     display: inline-block;
     padding: 12px 24px;
+    min-height: 44px; /* WCAG minimum touch target size */
+    min-width: 44px;
+    touch-action: manipulation; /* Improve touch response */
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0.1);
     border-radius: 0;
     text-decoration: none;
     font-weight: 400;
@@ -774,6 +799,8 @@ h1, h2, h3, h4, h5, h6 {
 @media (max-width: 768px) {
     .nav-toggle {
         display: flex;
+        touch-action: manipulation; /* Improve touch response */
+        -webkit-tap-highlight-color: transparent; /* Remove tap highlight */
     }
 
     .nav-menu {
@@ -783,19 +810,34 @@ h1, h2, h3, h4, h5, h6 {
         flex-direction: column;
         background-color: var(--primary-color);
         width: 100%;
-        transition: var(--transition);
+        transition: transform 0.3s ease, opacity 0.3s ease;
         padding: 16px 0;
         gap: 0;
         height: auto;
+        transform: translateX(-100%);
+        opacity: 0;
+        will-change: transform, opacity;
+        touch-action: pan-y; /* Allow vertical scrolling */
     }
 
     .nav-menu.active {
         left: 0;
+        transform: translateX(0);
+        opacity: 1;
     }
 
     .nav-menu > li {
         width: 100%;
         height: auto;
+        touch-action: manipulation;
+    }
+    
+    .nav-link {
+        min-height: 48px; /* Minimum touch target size (WCAG) */
+        display: flex;
+        align-items: center;
+        padding: 12px 24px;
+        -webkit-tap-highlight-color: rgba(255, 255, 255, 0.1);
     }
     
     .nav-link {
@@ -953,12 +995,17 @@ button:focus {
     right: 24px;
     width: 60px;
     height: 60px;
-    background-color: #25D366;
+    min-width: 44px; /* WCAG minimum touch target size */
+    min-height: 44px;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+    background-color: var(--bg-color);
+    border: 2px solid var(--primary-color);
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 4px 12px rgba(37, 211, 102, 0.4);
+    box-shadow: 0 4px 12px rgba(71, 117, 96, 0.3);
     z-index: 999;
     transition: var(--transition);
     text-decoration: none;
@@ -966,14 +1013,16 @@ button:focus {
 
 .whatsapp-float:hover {
     transform: scale(1.1);
-    box-shadow: 0 6px 16px rgba(37, 211, 102, 0.6);
+    box-shadow: 0 6px 16px rgba(71, 117, 96, 0.4);
+    border-color: var(--primary-hover);
     will-change: transform;
 }
 
-.whatsapp-float svg {
+.whatsapp-float svg,
+.whatsapp-float img {
     width: 32px;
     height: 32px;
-    fill: #ffffff;
+    display: block;
 }
 
 .whatsapp-float .tooltip {
@@ -1014,7 +1063,8 @@ button:focus {
         right: 20px;
     }
     
-    .whatsapp-float svg {
+    .whatsapp-float svg,
+    .whatsapp-float img {
         width: 28px;
         height: 28px;
     }
