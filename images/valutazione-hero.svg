@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 400">
+  <defs>
+    <linearGradient id="valhbg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#6a9a83"/>
+      <stop offset="100%" style="stop-color:#477560"/>
+    </linearGradient>
+  </defs>
+  <rect fill="url(#valhbg)" width="1600" height="400"/>
+  <!-- Decorative assessment icons -->
+  <circle cx="200" cy="200" r="60" fill="#ffffff" opacity="0.1"/>
+  <rect x="1200" y="150" width="150" height="100" rx="10" fill="#f2dede" opacity="0.15"/>
+  <circle cx="1000" cy="300" r="40" fill="#ffffff" opacity="0.08"/>
+</svg>
+

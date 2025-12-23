@@ -1,0 +1,23 @@
+# Robots.txt for veronicatresoldi.com
+# Neuropsicomotricista a Monza e Brianza
+
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://www.veronicatresoldi.com/sitemap.xml
+
+# Disallow admin/system files (if any)
+Disallow: /.git/
+Disallow: /.nojekyll
+
+# Allow all search engines
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: Slurp
+Allow: /
+

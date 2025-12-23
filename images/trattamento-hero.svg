@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 400">
+  <defs>
+    <linearGradient id="trathbg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#7aaa93"/>
+      <stop offset="100%" style="stop-color:#477560"/>
+    </linearGradient>
+  </defs>
+  <rect fill="url(#trathbg)" width="1600" height="400"/>
+  <!-- Puzzle decoration -->
+  <g transform="translate(150, 150)" opacity="0.15">
+    <path d="M0,0 L60,0 L60,20 C60,35 80,35 80,20 L80,0 L140,0 L140,60 L120,60 C105,60 105,80 120,80 L140,80 L140,140 L80,140 L80,120 C80,105 60,105 60,120 L60,140 L0,140 L0,80 L20,80 C35,80 35,60 20,60 L0,60 Z" fill="#ffffff"/>
+  </g>
+  <circle cx="1300" cy="250" r="70" fill="#f2dede" opacity="0.12"/>
+</svg>
+
