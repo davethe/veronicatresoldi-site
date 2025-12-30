@@ -43,10 +43,12 @@
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Arvo:wght@400;700&family=Merriweather:ital,wght@0,300;0,400;0,700;1,400&display=swap"
         media="print" onload="this.media='all'">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="../styles.css">
 
     <!-- Preload critical hero image -->
-    <link rel="preload" href="../images/valutazione-hero.svg" as="image">
+    <link rel="preload" href="../images/valutazione-hero.svg" as="image" fetchpriority="high">
+    <link rel="preload" href="../images/logo.png" as="image">
 
     <!-- Schema.org -->
     <script type="application/ld+json">
@@ -105,7 +107,8 @@
     <nav class="navbar" aria-label="Navigazione principale">
         <div class="container">
             <div class="nav-brand">
-                <img src="../images/logo.png" alt="Logo Veronica Tresoldi" width="40" height="40">
+                <img src="../images/logo.png" alt="Logo Veronica Tresoldi" width="40" height="40" fetchpriority="high"
+                    loading="eager">
                 <a href="../index.html">Veronica Tresoldi</a>
             </div>
             <button class="nav-toggle" aria-label="Apri menu di navigazione" aria-expanded="false">
@@ -162,25 +165,33 @@
                         richiederla?</h2>
                     <div class="features-grid">
                         <div class="feature-item">
-                            <span class="feature-icon">🗣️</span>
+                            <span class="feature-icon">
+                                <i class="fa-solid fa-comment-dots" aria-hidden="true"></i>
+                            </span>
                             <h3>Linguaggio</h3>
                             <p>Se il bambino parla poco, fatica a farsi capire o sembra avere difficoltà nell'esprimere
                                 i propri bisogni.</p>
                         </div>
                         <div class="feature-item">
-                            <span class="feature-icon">🏃</span>
+                            <span class="feature-icon">
+                                <i class="fa-solid fa-child-reaching" aria-hidden="true"></i>
+                            </span>
                             <h3>Movimento</h3>
                             <p>In caso di impaccio motorio, frequenti cadute o difficoltà nella coordinazione dei
                                 movimenti più complessi.</p>
                         </div>
                         <div class="feature-item">
-                            <span class="feature-icon">🧩</span>
+                            <span class="feature-icon">
+                                <i class="fa-solid fa-brain" aria-hidden="true"></i>
+                            </span>
                             <h3>Attenzione</h3>
                             <p>Se noti che fatica a concentrarsi su un'attività per il tempo adeguato alla sua età o se
                                 è molto irrequieto.</p>
                         </div>
                         <div class="feature-item">
-                            <span class="feature-icon">❤️</span>
+                            <span class="feature-icon">
+                                <i class="fa-solid fa-heart" aria-hidden="true"></i>
+                            </span>
                             <h3>Relazione</h3>
                             <p>Difficoltà nell'interazione con i coetanei, gestione delle emozioni intense o fatica nel
                                 rispettare le regole del gioco.</p>
@@ -228,11 +239,11 @@
                 <div class="footer-column">
                     <h4>Contatti</h4>
                     <div class="footer-contact-item">
-                        <span class="icon">📍</span>
+                        <span class="icon"><i class="fa-solid fa-location-dot"></i></span>
                         <p>Via Mazzini 5, 20835 Muggiò (MB)</p>
                     </div>
                     <div class="footer-contact-item">
-                        <span class="icon">📧</span>
+                        <span class="icon"><i class="fa-solid fa-envelope"></i></span>
                         <p><a href="mailto:veronicatresoldi.tnpee@gmail.com">veronicatresoldi.tnpee@gmail.com</a></p>
                     </div>
                 </div>

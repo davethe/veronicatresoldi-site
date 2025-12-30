@@ -78,7 +78,9 @@ dropdowns.forEach(dropdown => {
     dropdownLink.addEventListener('click', (e) => {
         if (window.innerWidth <= 768) {
             e.preventDefault();
+            const isActive = dropdown.classList.contains('active');
             dropdown.classList.toggle('active');
+            dropdownLink.setAttribute('aria-expanded', !isActive);
         }
     });
 });
@@ -140,13 +142,15 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!window.location.pathname.includes('contatti')) {
         const quizHTML = `
             <button class="quiz-fab" id="open-quiz" aria-label="Scopri il percorso più adatto">
-                <span class="icon">🧭</span>
+                <span class="icon" aria-hidden="true">
+                    <i class="fa-solid fa-compass"></i>
+                </span>
                 <span class="quiz-fab-label">Scopri il percorso più adatto</span>
             </button>
 
             <div class="quiz-modal" id="quiz-modal" role="dialog" aria-modal="true" aria-labelledby="quiz-title">
                 <div class="quiz-modal-content">
-                    <button class="quiz-close" id="close-quiz" aria-label="Chiudi assistente">&times;</button>
+                    <button class="quiz-close" id="close-quiz" aria-label="Chiudi assistente"><span aria-hidden="true">&times;</span></button>
                     
                     <div id="quiz-inner-container">
                         <div class="quiz-progress" aria-hidden="true">
@@ -160,15 +164,21 @@ document.addEventListener('DOMContentLoaded', () => {
                             <h3 class="quiz-question">Quanti anni ha il tuo bambino?</h3>
                             <div class="quiz-options">
                                 <button class="quiz-option" data-value="0-3">
-                                    <span class="icon" aria-hidden="true">👶</span>
+                                    <span class="icon" aria-hidden="true">
+                                        <i class="fa-solid fa-baby"></i>
+                                    </span>
                                     <span>0 - 3 anni</span>
                                 </button>
                                 <button class="quiz-option" data-value="4-6">
-                                    <span class="icon" aria-hidden="true">🧒</span>
+                                    <span class="icon" aria-hidden="true">
+                                        <i class="fa-solid fa-child"></i>
+                                    </span>
                                     <span>4 - 6 anni</span>
                                 </button>
                                 <button class="quiz-option" data-value="6+">
-                                    <span class="icon" aria-hidden="true">🎒</span>
+                                    <span class="icon" aria-hidden="true">
+                                        <i class="fa-solid fa-school"></i>
+                                    </span>
                                     <span>Oltre i 6 anni</span>
                                 </button>
                             </div>
@@ -179,19 +189,27 @@ document.addEventListener('DOMContentLoaded', () => {
                             <h3 class="quiz-question">Cosa noti di più nel suo comportamento?</h3>
                             <div class="quiz-options">
                                 <button class="quiz-option" data-value="motricità">
-                                    <span class="icon" aria-hidden="true">🏃</span>
+                                    <span class="icon" aria-hidden="true">
+                                        <i class="fa-solid fa-child-reaching"></i>
+                                    </span>
                                     <span>Movimenti goffi o poca coordinazione</span>
                                 </button>
                                 <button class="quiz-option" data-value="attenzione">
-                                    <span class="icon" aria-hidden="true">⚡</span>
+                                    <span class="icon" aria-hidden="true">
+                                        <i class="fa-solid fa-bolt"></i>
+                                    </span>
                                     <span>Irrequietezza o poca concentrazione</span>
                                 </button>
                                 <button class="quiz-option" data-value="linguaggio">
-                                    <span class="icon" aria-hidden="true">🤝</span>
+                                    <span class="icon" aria-hidden="true">
+                                        <i class="fa-solid fa-comment-dots"></i>
+                                    </span>
                                     <span>Difficoltà a parlare o relazionarsi</span>
                                 </button>
                                 <button class="quiz-option" data-value="gioco">
-                                    <span class="icon" aria-hidden="true">🧸</span>
+                                    <span class="icon" aria-hidden="true">
+                                        <i class="fa-solid fa-puzzle-piece"></i>
+                                    </span>
                                     <span>Ho bisogno di consigli su come giocarci</span>
                                 </button>
                             </div>
@@ -202,15 +220,21 @@ document.addEventListener('DOMContentLoaded', () => {
                             <h3 class="quiz-question">Qual è il tuo obiettivo principale?</h3>
                             <div class="quiz-options">
                                 <button class="quiz-option" data-value="valutazione">
-                                    <span class="icon" aria-hidden="true">🔎</span>
+                                    <span class="icon" aria-hidden="true">
+                                        <i class="fa-solid fa-magnifying-glass"></i>
+                                    </span>
                                     <span>Capire se c'è un problema (Valutazione)</span>
                                 </button>
                                 <button class="quiz-option" data-value="terapia">
-                                    <span class="icon" aria-hidden="true">📈</span>
+                                    <span class="icon" aria-hidden="true">
+                                        <i class="fa-solid fa-chart-line"></i>
+                                    </span>
                                     <span>Iniziare un percorso (Terapia)</span>
                                 </button>
                                 <button class="quiz-option" data-value="consulto">
-                                    <span class="icon" aria-hidden="true">💡</span>
+                                    <span class="icon" aria-hidden="true">
+                                        <i class="fa-solid fa-lightbulb"></i>
+                                    </span>
                                     <span>Strumenti pratici per me genitore</span>
                                 </button>
                             </div>

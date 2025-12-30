@@ -43,10 +43,13 @@
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Arvo:wght@400;700&family=Merriweather:ital,wght@0,300;0,400;0,700;1,400&display=swap"
         media="print" onload="this.media='all'">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="styles.css">
 
     <!-- Preload critical hero image -->
-    <link rel="preload" href="images/contatti-faq-header.png" as="image">
+    <!-- Preload critical hero image -->
+    <link rel="preload" href="images/contatti-faq-header.png" as="image" fetchpriority="high">
+    <link rel="preload" href="images/logo.png" as="image">
 
     <!-- Schema.org FAQPage -->
     <script type="application/ld+json">
@@ -109,7 +112,8 @@
     <nav class="navbar" aria-label="Navigazione principale">
         <div class="container">
             <div class="nav-brand">
-                <img src="images/logo.png" alt="Logo Veronica Tresoldi" width="40" height="40">
+                <img src="images/logo.png" alt="Logo Veronica Tresoldi" width="40" height="40" fetchpriority="high"
+                    loading="eager">
                 <a href="index.html">Veronica Tresoldi</a>
             </div>
             <button class="nav-toggle" aria-label="Apri menu di navigazione" aria-expanded="false">
@@ -295,11 +299,11 @@
                 <div class="footer-column">
                     <h4>Contatti</h4>
                     <div class="footer-contact-item">
-                        <span class="icon">📍</span>
+                        <span class="icon"><i class="fa-solid fa-location-dot"></i></span>
                         <p>Via Mazzini 5, 20835 Muggiò (MB)</p>
                     </div>
                     <div class="footer-contact-item">
-                        <span class="icon">📧</span>
+                        <span class="icon"><i class="fa-solid fa-envelope"></i></span>
                         <p><a href="mailto:veronicatresoldi.tnpee@gmail.com">veronicatresoldi.tnpee@gmail.com</a></p>
                     </div>
                 </div>

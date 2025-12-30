@@ -43,10 +43,13 @@
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Arvo:wght@400;700&family=Merriweather:ital,wght@0,300;0,400;0,700;1,400&display=swap"
         media="print" onload="this.media='all'">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="../styles.css">
 
     <!-- Preload critical hero image -->
-    <link rel="preload" href="../images/supporto-hero.svg" as="image">
+    <!-- Preload critical hero image -->
+    <link rel="preload" href="../images/supporto-hero.svg" as="image" fetchpriority="high">
+    <link rel="preload" href="../images/logo.png" as="image">
 
     <!-- Schema.org -->
     <script type="application/ld+json">
@@ -92,7 +95,8 @@
     <nav class="navbar" aria-label="Navigazione principale">
         <div class="container">
             <div class="nav-brand">
-                <img src="../images/logo.png" alt="Logo Veronica Tresoldi" width="40" height="40">
+                <img src="../images/logo.png" alt="Logo Veronica Tresoldi" width="40" height="40" fetchpriority="high"
+                    loading="eager">
                 <a href="../index.html">Veronica Tresoldi</a>
             </div>
             <button class="nav-toggle" aria-label="Apri menu di navigazione" aria-expanded="false">
@@ -149,25 +153,33 @@
                         la tua famiglia</h2>
                     <div class="features-grid">
                         <div class="feature-item">
-                            <span class="feature-icon">🧸</span>
+                            <span class="feature-icon">
+                                <i class="fa-solid fa-puzzle-piece" aria-hidden="true"></i>
+                            </span>
                             <h3>Gioco Educativo</h3>
                             <p>Consulenza sulla scelta dei giochi e dei materiali più adatti a stimolare lo sviluppo del
                                 bambino in ogni fase.</p>
                         </div>
                         <div class="feature-item">
-                            <span class="feature-icon">⚓</span>
+                            <span class="feature-icon">
+                                <i class="fa-solid fa-hand-holding-heart" aria-hidden="true"></i>
+                            </span>
                             <h3>Gestione delle Crisi</h3>
                             <p>Tecniche pratiche per affrontare rabbia, opposizione e frustrazione, mantenendo calma e
                                 connessione.</p>
                         </div>
                         <div class="feature-item">
-                            <span class="feature-icon">✨</span>
+                            <span class="feature-icon">
+                                <i class="fa-solid fa-wand-magic-sparkles" aria-hidden="true"></i>
+                            </span>
                             <h3>Autonomia</h3>
                             <p>Strategie per favorire l'indipendenza e la sicurezza del bambino nel contesto domestico e
                                 quotidiano.</p>
                         </div>
                         <div class="feature-item">
-                            <span class="feature-icon">🤝</span>
+                            <span class="feature-icon">
+                                <i class="fa-solid fa-people-roof" aria-hidden="true"></i>
+                            </span>
                             <h3>Relazione</h3>
                             <p>Strumenti per migliorare la comunicazione e rafforzare il legame emotivo profondo tra
                                 genitore e figlio.</p>
@@ -215,11 +227,11 @@
                 <div class="footer-column">
                     <h4>Contatti</h4>
                     <div class="footer-contact-item">
-                        <span class="icon">📍</span>
+                        <span class="icon"><i class="fa-solid fa-location-dot"></i></span>
                         <p>Via Mazzini 5, 20835 Muggiò (MB)</p>
                     </div>
                     <div class="footer-contact-item">
-                        <span class="icon">📧</span>
+                        <span class="icon"><i class="fa-solid fa-envelope"></i></span>
                         <p><a href="mailto:veronicatresoldi.tnpee@gmail.com">veronicatresoldi.tnpee@gmail.com</a></p>
                     </div>
                 </div>

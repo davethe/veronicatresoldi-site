@@ -50,9 +50,13 @@
     --hero-text-pink: #f2dede;
     --hero-subtitle-pink: #e8b5b5;
     /* Light pink dal logo */
-    --accent-color: #d97d7d;
-    /* Soft Coral/Salmon per CTA */
+    --accent-color: #c56565;
+    /* Darkened for WCAG contrast (4.5:1) */
     --accent-light: #f5e1e1;
+    --accent-hover: #b35a5a;
+    --accent-shadow: rgba(197, 101, 101, 0.3);
+    --input-bg: #fcfcfc;
+    --input-border: #eeeeee;
     --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
     --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
     --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
@@ -111,7 +115,7 @@ h3,
 h4,
 h5,
 h6 {
-    font-family: 'Arvo', Georgia, serif;
+    font-family: 'Arvo', serif;
     font-weight: 700;
     color: var(--primary-color);
     line-height: 1.2;
@@ -274,7 +278,8 @@ h6 {
     background: none;
     border: none;
     cursor: pointer;
-    padding: 5px;
+    padding: 12px;
+    /* Increased from 5px for better tap target */
     gap: 5px;
 }
 
@@ -398,7 +403,7 @@ h6 {
     background-color: var(--accent-color);
     color: var(--text-white);
     border-color: var(--accent-color);
-    box-shadow: 0 4px 14px 0 rgba(217, 125, 125, 0.39);
+    box-shadow: 0 4px 14px 0 var(--accent-shadow);
     border-radius: 50px;
     font-weight: 700;
     text-transform: uppercase;
@@ -406,10 +411,10 @@ h6 {
 }
 
 .btn-primary:hover {
-    background-color: #c46b6b;
-    border-color: #c46b6b;
+    background-color: var(--accent-hover);
+    border-color: var(--accent-hover);
     transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(217, 125, 125, 0.23);
+    box-shadow: 0 6px 20px var(--accent-shadow);
 }
 
 .btn-secondary {
@@ -1026,8 +1031,12 @@ margin-bottom: 8px;
     font-family: 'Lato', sans-serif;
     color: var(--text-color);
     text-decoration: none;
-    font-size: 10.5pt;
+    font-size: 11pt;
+    /* Increased for readability */
     transition: var(--transition);
+    padding: 8px 0;
+    /* Added tap target padding */
+    display: inline-block;
 }
 
 .footer-links a:hover {
@@ -1418,11 +1427,11 @@ button:focus {
 .form-group textarea {
     width: 100%;
     padding: 15px 20px;
-    border: 1px solid #eee;
+    border: 1px solid var(--input-border);
     border-radius: 15px;
     font-family: 'Lato', sans-serif;
     font-size: 11pt;
-    background-color: #fcfcfc;
+    background-color: var(--input-bg);
     transition: var(--transition);
 }
 
@@ -1431,7 +1440,7 @@ button:focus {
 .form-group textarea:focus {
     outline: none;
     border-color: var(--accent-color);
-    background-color: #fff;
+    background-color: var(--bg-color);
     box-shadow: 0 0 0 4px var(--accent-light);
 }
 
@@ -1611,7 +1620,7 @@ button:focus {
     width: 64px;
     height: 64px;
     background: var(--accent-color);
-    color: white;
+    color: var(--text-white);
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -1642,7 +1651,7 @@ button:focus {
     width: 50px;
     height: 50px;
     background: var(--primary-color);
-    color: white;
+    color: var(--text-white);
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -1744,7 +1753,7 @@ button:focus {
     justify-content: center;
     margin-bottom: 25px;
     font-size: 2rem;
-    box-shadow: 0 4px 15px rgba(255, 149, 149, 0.3);
+    box-shadow: 0 4px 15px var(--accent-shadow);
     transition: var(--transition);
 }
 
@@ -1866,7 +1875,7 @@ button:focus {
     align-items: center;
     justify-content: center;
     font-size: 2rem;
-    color: white;
+    color: var(--text-white);
     padding-left: 5px;
     /* Visual center for triangle */
     transition: var(--transition);
@@ -1905,13 +1914,13 @@ button:focus {
     height: 70px;
     background-color: var(--accent-color);
     border-radius: 50%;
-    color: white;
+    color: var(--text-white);
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 2rem;
     cursor: pointer;
-    box-shadow: 0 10px 25px rgba(255, 149, 149, 0.4);
+    box-shadow: 0 10px 25px var(--accent-shadow);
     z-index: 900;
     transition: var(--transition);
     border: none;
@@ -1926,7 +1935,7 @@ button:focus {
     position: absolute;
     right: 85px;
     background: var(--primary-color);
-    color: white;
+    color: var(--text-white);
     padding: 10px 20px;
     border-radius: 30px;
     font-size: 0.9rem;
@@ -2178,7 +2187,7 @@ button:focus {
     top: 3px;
     width: 6px;
     height: 11px;
-    border: solid white;
+    border: solid var(--text-white);
     border-width: 0 2.5px 2.5px 0;
     transform: rotate(45deg);
 }
@@ -2225,7 +2234,7 @@ button.quiz-option {
     display: flex;
     align-items: center;
     width: 100%;
-    background: white;
+    background: var(--bg-color);
     border: 1px solid var(--border-color);
     padding: 15px 20px;
     border-radius: 12px;
@@ -2246,11 +2255,15 @@ button.quiz-option:focus {
 .quiz-close {
     background: none;
     border: none;
-    font-size: 2rem;
+    font-size: 2.5rem;
     cursor: pointer;
     color: var(--text-light);
     line-height: 1;
-    padding: 5px;
+    padding: 12px;
+    /* Enlarged tap target */
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .quiz-close:hover {
