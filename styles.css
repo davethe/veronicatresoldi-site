@@ -149,16 +149,30 @@ h6 {
 }
 
 .nav-brand a {
-    font-family: 'Arvo', Georgia, serif;
-    font-size: 1.25rem;
-    font-weight: 400;
+    font-family: 'Arvo', serif;
+    font-size: 1.5rem;
+    font-weight: 700;
     color: var(--text-white);
     text-decoration: none;
     transition: var(--transition);
 }
 
 .nav-brand a:hover {
-    opacity: 0.9;
+    color: var(--accent-light);
+}
+
+/* Navbar CTA Class */
+.nav-cta {
+    padding: 8px 20px !important;
+    font-size: 10pt !important;
+    margin-left: 15px;
+}
+
+/* Scrolled Navbar State */
+.navbar.scrolled {
+    background-color: rgba(26, 61, 46, 0.98) !important;
+    padding: 5px 0 !important;
+    backdrop-filter: blur(10px);
 }
 
 .nav-menu {
@@ -303,8 +317,8 @@ h6 {
 }
 
 .hero-title {
-    font-family: 'Merriweather', Georgia, serif;
-    font-size: 36pt;
+    font-family: 'Arvo', serif;
+    font-size: 38pt;
     font-weight: 700;
     color: var(--text-white);
     margin-bottom: 24px;
@@ -313,9 +327,9 @@ h6 {
 }
 
 .hero-subtitle {
-    font-family: 'Merriweather', Georgia, serif;
-    font-size: 18pt;
-    font-weight: 700;
+    font-family: 'Lato', sans-serif;
+    font-size: 20pt;
+    font-weight: 400;
     color: var(--accent-light);
     line-height: 1.4;
     text-shadow: 0 1px 8px rgba(0, 0, 0, 0.4);
@@ -351,11 +365,12 @@ h6 {
 }
 
 .page-hero-title {
-    font-family: 'Merriweather', Georgia, serif;
+    font-family: 'Arvo', serif;
     font-size: 36pt;
     font-weight: 700;
     color: var(--text-white);
     line-height: 1.2;
+    text-shadow: 0 2px 15px rgba(0, 0, 0, 0.5);
 }
 
 /* Buttons */
@@ -398,13 +413,48 @@ h6 {
 }
 
 .btn-secondary {
-    background-color: var(--text-white);
-    color: #000000;
-    border-color: #000000;
+    background-color: transparent;
+    color: var(--primary-color);
+    border-color: var(--primary-color);
+    border-radius: 50px;
+    font-weight: 700;
 }
 
 .btn-secondary:hover {
-    opacity: 0.8;
+    background-color: var(--primary-color);
+    color: var(--text-white);
+    transform: translateY(-2px);
+}
+
+.btn-sm {
+    padding: 8px 20px !important;
+    font-size: 10pt !important;
+    text-transform: none;
+    letter-spacing: 0;
+}
+
+/* Mission Highlight */
+.mission-highlight {
+    text-align: center;
+}
+
+.mission-highlight h2 {
+    background-color: var(--bg-color);
+    padding: 60px 40px;
+    border-radius: 40px;
+    box-shadow: var(--shadow-lg);
+    color: var(--primary-color);
+    font-size: 24pt;
+    max-width: 1000px;
+    margin: 0 auto;
+    border: none;
+}
+
+@media (max-width: 768px) {
+    .mission-highlight h2 {
+        font-size: 18pt;
+        padding: 40px 20px;
+    }
 }
 
 /* Sections */
@@ -522,9 +572,15 @@ h6 {
 }
 
 .service-card-content {
+    padding: 32px;
     display: flex;
     flex-direction: column;
-    flex-grow: 1;
+    flex: 1;
+}
+
+.service-card-content p {
+    flex: 1;
+    margin-bottom: 24px;
 }
 
 .service-card-image {
@@ -553,11 +609,14 @@ h6 {
 }
 
 .service-card h3 {
-    font-family: 'Merriweather', Georgia, serif;
-    font-size: 21pt;
+    font-family: 'Arvo', Georgia, serif;
+    font-size: 1.5rem;
     font-weight: 700;
-    margin-bottom: 12px;
+    margin-bottom: 20px;
     line-height: 1.25;
+    min-height: 2.5em;
+    display: flex;
+    align-items: center;
 }
 
 .service-card h3 a {
@@ -1362,9 +1421,15 @@ button:focus {
 
 .testimonials-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 32px;
     margin-top: 32px;
+}
+
+@media (min-width: 1024px) {
+    .testimonials-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
 }
 
 .testimonial-card {
@@ -1421,9 +1486,15 @@ button:focus {
 /* Nuove Sezioni: Quando rivolgersi a me? */
 .intervention-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
     gap: 32px;
     margin-top: 48px;
+}
+
+@media (min-width: 1024px) {
+    .intervention-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
 }
 
 .intervention-card {
@@ -1433,6 +1504,21 @@ button:focus {
     border: 1px solid var(--accent-light);
     transition: var(--transition);
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.intervention-card h3 {
+    margin-bottom: 15px;
+    min-height: 3em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.intervention-card p {
+    flex-grow: 1;
 }
 
 .intervention-card:hover {
@@ -1467,6 +1553,9 @@ button:focus {
     text-align: center;
     position: relative;
     padding: 24px;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
 }
 
 .step-number {
@@ -1486,6 +1575,14 @@ button:focus {
 .step-item h4 {
     margin-bottom: 12px;
     color: var(--primary-color);
+    min-height: 2.5em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.step-item p {
+    flex-grow: 1;
 }
 
 /* Reveal Animation */
@@ -1498,6 +1595,150 @@ button:focus {
 .reveal.active {
     opacity: 1;
     transform: translateY(0);
+}
+
+/* Service Detail Pages */
+.service-detail-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 20px 0;
+}
+
+.service-intro-card {
+    background-color: var(--bg-color);
+    padding: 50px;
+    border-radius: 30px;
+    box-shadow: var(--shadow-lg);
+    margin-bottom: 60px;
+    border: 1px solid rgba(0, 0, 0, 0.03);
+}
+
+.service-intro-card h2 {
+    margin-bottom: 25px;
+    color: var(--primary-color);
+    border-bottom: 2px solid var(--bg-alt);
+    padding-bottom: 15px;
+    display: inline-block;
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 30px;
+    margin: 40px 0;
+}
+
+@media (min-width: 1024px) {
+    .features-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+.feature-item {
+    background-color: var(--bg-alt);
+    padding: 35px;
+    border-radius: 25px;
+    transition: var(--transition);
+    border: 1px solid transparent;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    height: 100%;
+}
+
+.feature-item:hover {
+    transform: translateY(-8px);
+    background-color: var(--text-white);
+    border-color: var(--accent-light);
+    box-shadow: var(--shadow-lg);
+}
+
+.feature-icon {
+    width: 70px;
+    height: 70px;
+    background: var(--accent-color);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 25px;
+    font-size: 2rem;
+    box-shadow: 0 4px 15px rgba(255, 149, 149, 0.3);
+}
+
+.feature-item h3 {
+    font-size: 1.4rem;
+    margin-bottom: 15px;
+    color: var(--primary-color);
+    min-height: 1.5em;
+    /* Ridotto perché ora è centrato e solitamente occupa meno spazio verticale */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.feature-item p {
+    font-size: 11.5pt;
+    color: var(--text-light);
+    line-height: 1.7;
+    flex-grow: 1;
+}
+
+.service-cta-box {
+    text-align: center;
+    background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+    color: var(--text-white);
+    padding: 70px 50px;
+    border-radius: 40px;
+    margin-top: 80px;
+    box-shadow: var(--shadow-lg);
+}
+
+.service-cta-box h2 {
+    color: var(--text-white);
+    margin-bottom: 20px;
+    font-size: 28pt;
+}
+
+.service-cta-box p {
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: 35px;
+    font-size: 14pt;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.service-cta-box .btn-primary {
+    background-color: var(--text-white);
+    color: var(--primary-color);
+    border-color: var(--text-white);
+    padding: 15px 40px;
+    font-size: 12pt;
+}
+
+.service-cta-box .btn-primary:hover {
+    background-color: var(--accent-light);
+    transform: translateY(-3px) scale(1.05);
+}
+
+@media (max-width: 768px) {
+    .service-intro-card {
+        padding: 35px 25px;
+    }
+
+    .features-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .service-cta-box {
+        padding: 50px 30px;
+    }
+
+    .service-cta-box h2 {
+        font-size: 22pt;
+    }
 }
 
 @media print {

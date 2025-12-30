@@ -123,11 +123,9 @@ const navbar = document.querySelector('.navbar');
 if (navbar) {
     window.addEventListener('scroll', () => {
         if (window.scrollY > 50) {
-            navbar.style.backgroundColor = 'rgba(26, 61, 46, 0.98)';
-            navbar.style.padding = '5px 0';
+            navbar.classList.add('scrolled');
         } else {
-            navbar.style.backgroundColor = 'rgba(26, 61, 46, 0.95)';
-            navbar.style.padding = '0';
+            navbar.classList.remove('scrolled');
         }
     });
 }
