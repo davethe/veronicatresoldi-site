@@ -1896,6 +1896,192 @@ button:focus {
     }
 }
 
+/* Quiz FAB & Modal */
+.quiz-fab {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 70px;
+    height: 70px;
+    background-color: var(--accent-color);
+    border-radius: 50%;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    cursor: pointer;
+    box-shadow: 0 10px 25px rgba(255, 149, 149, 0.4);
+    z-index: 900;
+    transition: var(--transition);
+    border: none;
+}
+
+.quiz-fab:hover {
+    transform: scale(1.1) rotate(5deg);
+    background-color: var(--primary-color);
+}
+
+.quiz-fab-label {
+    position: absolute;
+    right: 85px;
+    background: var(--primary-color);
+    color: white;
+    padding: 10px 20px;
+    border-radius: 30px;
+    font-size: 0.9rem;
+    white-space: nowrap;
+    opacity: 0;
+    transform: translateX(20px);
+    transition: var(--transition);
+    pointer-events: none;
+    font-family: 'Lato', sans-serif;
+}
+
+.quiz-fab:hover .quiz-fab-label {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* Modal Quiz */
+.quiz-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(5px);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    padding: 20px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.quiz-modal.active {
+    display: flex;
+    opacity: 1;
+}
+
+.quiz-modal-content {
+    background: var(--bg-color);
+    width: 100%;
+    max-width: 600px;
+    border-radius: 40px;
+    padding: 40px;
+    position: relative;
+    box-shadow: var(--shadow-lg);
+    transform: scale(0.9);
+    transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.quiz-modal.active .quiz-modal-content {
+    transform: scale(1);
+}
+
+.quiz-close {
+    position: absolute;
+    top: 20px;
+    right: 25px;
+    font-size: 2rem;
+    cursor: pointer;
+    color: var(--text-light);
+    line-height: 1;
+}
+
+.quiz-close:hover {
+    color: var(--primary-color);
+}
+
+.quiz-step {
+    display: none;
+}
+
+.quiz-step.active {
+    display: block;
+    animation: fadeIn 0.4s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Reusing existing quiz styles with minor adjustments */
+.quiz-question {
+    font-family: 'Arvo', serif;
+    font-size: 1.6rem;
+    color: var(--primary-color);
+    margin-bottom: 25px;
+    text-align: center;
+}
+
+.quiz-options {
+    display: grid;
+    gap: 12px;
+}
+
+.quiz-option {
+    padding: 15px 20px;
+    background-color: var(--bg-alt);
+    border: 2px solid transparent;
+    border-radius: 15px;
+    cursor: pointer;
+    transition: var(--transition);
+    font-family: 'Lato', sans-serif;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.quiz-option:hover {
+    background-color: var(--text-white);
+    border-color: var(--accent-color);
+    transform: translateX(5px);
+}
+
+.quiz-progress {
+    height: 4px;
+    background-color: var(--bg-alt);
+    border-radius: 2px;
+    margin-bottom: 30px;
+}
+
+.quiz-progress-bar {
+    height: 100%;
+    background-color: var(--accent-color);
+    width: 0%;
+    transition: width 0.4s ease;
+}
+
+@media (max-width: 768px) {
+    .quiz-modal-content {
+        padding: 30px 20px;
+        border-radius: 30px;
+    }
+
+    .quiz-fab {
+        bottom: 20px;
+        right: 20px;
+        width: 60px;
+        height: 60px;
+    }
+
+    .quiz-fab-label {
+        display: none;
+    }
+}
+
 @media print {
 
     .navbar,
@@ -1930,4 +2116,93 @@ button:focus {
         content: " (" attr(href) ")";
         font-size: 0.8em;
     }
+}
+
+/* GDPR Checkbox Styling */
+.privacy-checkbox {
+    margin: 20px 0;
+}
+
+.checkbox-container {
+    display: block;
+    position: relative;
+    padding-left: 35px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-size: 14px;
+    user-select: none;
+    line-height: 1.4;
+    color: var(--text-light);
+}
+
+.checkbox-container input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+.checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 22px;
+    width: 22px;
+    background-color: #eee;
+    border-radius: 4px;
+    border: 1px solid var(--border-color);
+}
+
+.checkbox-container:hover input~.checkmark {
+    background-color: #ccc;
+}
+
+.checkbox-container input:checked~.checkmark {
+    background-color: var(--accent-color);
+    border-color: var(--accent-color);
+}
+
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+.checkbox-container input:checked~.checkmark:after {
+    display: block;
+}
+
+.checkbox-container .checkmark:after {
+    left: 7px;
+    top: 3px;
+    width: 6px;
+    height: 11px;
+    border: solid white;
+    border-width: 0 2.5px 2.5px 0;
+    transform: rotate(45deg);
+}
+
+/* Accessibility Focus States */
+:focus-visible {
+    outline: 3px solid var(--accent-color);
+    outline-offset: 3px;
+}
+
+.btn:focus-visible {
+    outline-offset: 5px;
+}
+
+/* Legal Content Consistency */
+.legal-page .legal-content h2 {
+    margin-top: 40px;
+    margin-bottom: 20px;
+}
+
+.legal-page .legal-content p,
+.legal-page .legal-content li {
+    font-family: 'Merriweather', serif;
+    font-size: 12pt;
+    color: var(--text-light);
+    line-height: 1.8;
 }
