@@ -2206,3 +2206,53 @@ button:focus {
     color: var(--text-light);
     line-height: 1.8;
 }
+
+/* Accessibility Classes */
+.visually-hidden {
+    position: absolute !important;
+    width: 1px !important;
+    height: 1px !important;
+    padding: 0 !important;
+    margin: -1px !important;
+    overflow: hidden !important;
+    clip: rect(0, 0, 0, 0) !important;
+    white-space: nowrap !important;
+    border: 0 !important;
+}
+
+/* Quiz Accessibility Resets */
+button.quiz-option {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    background: white;
+    border: 1px solid var(--border-color);
+    padding: 15px 20px;
+    border-radius: 12px;
+    cursor: pointer;
+    text-align: left;
+    font-family: inherit;
+    font-size: 16px;
+    transition: var(--transition);
+}
+
+button.quiz-option:hover,
+button.quiz-option:focus {
+    border-color: var(--accent-color);
+    background-color: var(--accent-light);
+    transform: translateX(5px);
+}
+
+.quiz-close {
+    background: none;
+    border: none;
+    font-size: 2rem;
+    cursor: pointer;
+    color: var(--text-light);
+    line-height: 1;
+    padding: 5px;
+}
+
+.quiz-close:hover {
+    color: var(--accent-color);
+}

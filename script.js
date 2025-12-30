@@ -37,10 +37,14 @@ if (navToggle && navMenu) {
         }
     }
 
-    // Close mobile menu when clicking on a link
+    // Close mobile menu when clicking on a link (but not if it's a dropdown toggle)
     navLinks.forEach(link => {
-        link.addEventListener('click', () => {
+        link.addEventListener('click', (e) => {
             if (window.innerWidth <= 768) {
+                // If it's a dropdown parent, don't close the whole menu
+                if (link.parentElement.classList.contains('dropdown')) {
+                    return;
+                }
                 navMenu.classList.remove('active');
                 navToggle.setAttribute('aria-expanded', 'false');
             }
@@ -140,78 +144,80 @@ document.addEventListener('DOMContentLoaded', () => {
                 <span class="quiz-fab-label">Scopri il percorso più adatto</span>
             </button>
 
-            <div class="quiz-modal" id="quiz-modal">
+            <div class="quiz-modal" id="quiz-modal" role="dialog" aria-modal="true" aria-labelledby="quiz-title">
                 <div class="quiz-modal-content">
-                    <span class="quiz-close" id="close-quiz">&times;</span>
+                    <button class="quiz-close" id="close-quiz" aria-label="Chiudi assistente">&times;</button>
                     
                     <div id="quiz-inner-container">
-                        <div class="quiz-progress">
+                        <div class="quiz-progress" aria-hidden="true">
                             <div class="quiz-progress-bar" id="quiz-progress-bar"></div>
                         </div>
 
+                        <h2 id="quiz-title" class="visually-hidden">Bussola Evolutiva - Assistente alla scelta del percorso</h2>
+
                         <!-- Step 1 -->
-                        <div class="quiz-step active" data-step="1">
+                        <div class="quiz-step active" data-step="1" aria-live="polite">
                             <h3 class="quiz-question">Quanti anni ha il tuo bambino?</h3>
                             <div class="quiz-options">
-                                <div class="quiz-option" data-value="0-3">
-                                    <span class="icon">👶</span>
+                                <button class="quiz-option" data-value="0-3">
+                                    <span class="icon" aria-hidden="true">👶</span>
                                     <span>0 - 3 anni</span>
-                                </div>
-                                <div class="quiz-option" data-value="4-6">
-                                    <span class="icon">🧒</span>
+                                </button>
+                                <button class="quiz-option" data-value="4-6">
+                                    <span class="icon" aria-hidden="true">🧒</span>
                                     <span>4 - 6 anni</span>
-                                </div>
-                                <div class="quiz-option" data-value="6+">
-                                    <span class="icon">🎒</span>
+                                </button>
+                                <button class="quiz-option" data-value="6+">
+                                    <span class="icon" aria-hidden="true">🎒</span>
                                     <span>Oltre i 6 anni</span>
-                                </div>
+                                </button>
                             </div>
                         </div>
 
                         <!-- Step 2 -->
-                        <div class="quiz-step" data-step="2">
+                        <div class="quiz-step" data-step="2" aria-live="polite">
                             <h3 class="quiz-question">Cosa noti di più nel suo comportamento?</h3>
                             <div class="quiz-options">
-                                <div class="quiz-option" data-value="motricità">
-                                    <span class="icon">🏃</span>
+                                <button class="quiz-option" data-value="motricità">
+                                    <span class="icon" aria-hidden="true">🏃</span>
                                     <span>Movimenti goffi o poca coordinazione</span>
-                                </div>
-                                <div class="quiz-option" data-value="attenzione">
-                                    <span class="icon">⚡</span>
+                                </button>
+                                <button class="quiz-option" data-value="attenzione">
+                                    <span class="icon" aria-hidden="true">⚡</span>
                                     <span>Irrequietezza o poca concentrazione</span>
-                                </div>
-                                <div class="quiz-option" data-value="linguaggio">
-                                    <span class="icon">🤝</span>
+                                </button>
+                                <button class="quiz-option" data-value="linguaggio">
+                                    <span class="icon" aria-hidden="true">🤝</span>
                                     <span>Difficoltà a parlare o relazionarsi</span>
-                                </div>
-                                <div class="quiz-option" data-value="gioco">
-                                    <span class="icon">🧸</span>
+                                </button>
+                                <button class="quiz-option" data-value="gioco">
+                                    <span class="icon" aria-hidden="true">🧸</span>
                                     <span>Ho bisogno di consigli su come giocarci</span>
-                                </div>
+                                </button>
                             </div>
                         </div>
 
                         <!-- Step 3 -->
-                        <div class="quiz-step" data-step="3">
+                        <div class="quiz-step" data-step="3" aria-live="polite">
                             <h3 class="quiz-question">Qual è il tuo obiettivo principale?</h3>
                             <div class="quiz-options">
-                                <div class="quiz-option" data-value="valutazione">
-                                    <span class="icon">🔎</span>
+                                <button class="quiz-option" data-value="valutazione">
+                                    <span class="icon" aria-hidden="true">🔎</span>
                                     <span>Capire se c'è un problema (Valutazione)</span>
-                                </div>
-                                <div class="quiz-option" data-value="terapia">
-                                    <span class="icon">📈</span>
+                                </button>
+                                <button class="quiz-option" data-value="terapia">
+                                    <span class="icon" aria-hidden="true">📈</span>
                                     <span>Iniziare un percorso (Terapia)</span>
-                                </div>
-                                <div class="quiz-option" data-value="consulto">
-                                    <span class="icon">💡</span>
+                                </button>
+                                <button class="quiz-option" data-value="consulto">
+                                    <span class="icon" aria-hidden="true">💡</span>
                                     <span>Strumenti pratici per me genitore</span>
-                                </div>
+                                </button>
                             </div>
                         </div>
 
                         <!-- Result -->
-                        <div class="quiz-step" id="quiz-result">
+                        <div class="quiz-step" id="quiz-result" aria-live="assertive">
                             <div class="quiz-result" style="text-align: center;">
                                 <div id="result-content"></div>
                                 <div class="cta-center" style="margin-top: 30px;">
@@ -245,17 +251,46 @@ document.addEventListener('DOMContentLoaded', () => {
             quizModal.classList.add('active');
             document.body.style.overflow = 'hidden';
             resetQuiz();
+            // Move focus to modal
+            setTimeout(() => closeQuizBtn.focus(), 100);
         });
 
-        closeQuizBtn.addEventListener('click', () => {
+        const closeModal = () => {
             quizModal.classList.remove('active');
             document.body.style.overflow = '';
-        });
+            openQuizBtn.focus();
+        };
+
+        closeQuizBtn.addEventListener('click', closeModal);
 
         quizModal.addEventListener('click', (e) => {
-            if (e.target === quizModal) {
-                quizModal.classList.remove('active');
-                document.body.style.overflow = '';
+            if (e.target === quizModal) closeModal();
+        });
+
+        // Keyboard management: Escape and Tab Trap
+        document.addEventListener('keydown', (e) => {
+            if (!quizModal.classList.contains('active')) return;
+
+            if (e.key === 'Escape') {
+                closeModal();
+            }
+
+            if (e.key === 'Tab') {
+                const focusableElements = quizModal.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+                const firstElement = focusableElements[0];
+                const lastElement = focusableElements[focusableElements.length - 1];
+
+                if (e.shiftKey) { // Shift + Tab
+                    if (document.activeElement === firstElement) {
+                        e.preventDefault();
+                        lastElement.focus();
+                    }
+                } else { // Tab
+                    if (document.activeElement === lastElement) {
+                        e.preventDefault();
+                        firstElement.focus();
+                    }
+                }
             }
         });
 
@@ -294,15 +329,15 @@ document.addEventListener('DOMContentLoaded', () => {
             if (quizData.eta.includes('0 - 3') || quizData.preoccupazione.includes('gioco')) {
                 recommendedService = "supporto";
                 title = "Supporto Genitoriale e Parent Coaching";
-                text = `Il tuo bambino è in una fase magica di scoperta. Il percorso ideale è il **Supporto Genitoriale**. Ti aiuterò a capire come stimolarlo al meglio attraverso il gioco.`;
+                text = `Il tuo bambino è in una fase magica di scoperta. Il percorso ideale è il <strong>Supporto Genitoriale</strong>. Ti aiuterò a capire come stimolarlo al meglio attraverso il gioco.`;
             } else if (quizData.obiettivo.includes('Valutazione')) {
                 recommendedService = "valutazione";
                 title = "Valutazione Neuropsicomotoria";
-                text = `La tua priorità è fare chiarezza. Una **Valutazione** approfondita ci permetterà di osservare come il tuo bambino interagisce, dandoti risposte concrete.`;
+                text = `La tua priorità è fare chiarezza. Una <strong>Valutazione</strong> approfondita ci permetterà di osservare come il tuo bambino interagisce, dandoti risposte concrete.`;
             } else {
                 recommendedService = "trattamento";
                 title = "Trattamento Neuropsicomotorio";
-                text = `Un percorso di **Trattamento** aiuterà il tuo bambino a rinforzare le sue abilità divertendosi.`;
+                text = `Un percorso di <strong>Trattamento</strong> aiuterà il tuo bambino a rinforzare le sue abilità divertendosi.`;
             }
 
             resultContent.innerHTML = `<h3 style="margin-bottom:15px; color:var(--primary-color);">${title}</h3><p style="color:var(--text-light); line-height:1.6;">${text}</p>`;
