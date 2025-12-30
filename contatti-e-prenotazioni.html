@@ -119,6 +119,8 @@
                 <li><a href="contatti-e-prenotazioni.html" class="nav-link active" aria-current="page">Contatti e
                         prenotazioni</a></li>
                 <li><a href="faq.html" class="nav-link">FAQ</a></li>
+                <li style="margin-left: 15px;"><a href="contatti-e-prenotazioni.html" class="btn btn-primary"
+                        style="padding: 8px 20px; font-size: 10pt;">Richiedi valutazione</a></li>
             </ul>
         </div>
     </nav>
@@ -127,34 +129,82 @@
         <!-- Page Hero -->
         <section class="page-hero" style="background-image: url('images/contatti-faq-header.png');"
             aria-labelledby="page-title">
-            <div class="page-hero-content">
+            <div class="page-hero-content reveal">
                 <h1 id="page-title" class="page-hero-title">Contatti e prenotazioni</h1>
             </div>
         </section>
 
         <!-- Contatti Section -->
-        <section class="section" aria-labelledby="contact-info">
+        <section class="section reveal" aria-labelledby="contact-info-title">
             <div class="container">
-                <div class="contact-content">
-                    <div class="contact-info">
-                        <h2 id="contact-info">Prenota un appuntamento</h2>
-                        <p class="contact-email">
-                            Per qualsiasi domanda o informazione sulla <strong>valutazione neuropsicomotoria</strong>,
-                            sul <strong>trattamento</strong> o sul <strong>supporto genitoriale</strong>, non esitare a
-                            contattarmi.<br><br>
-                            <strong>Email:</strong>
-                            <a href="mailto:veronicatresoldi.tnpee@gmail.com">veronicatresoldi.tnpee@gmail.com</a>
+                <div class="contact-container">
+                    <!-- Info Column -->
+                    <div class="contact-info-list">
+                        <h2 id="contact-info-title"
+                            style="text-align: left; border: none; padding: 0; margin-bottom: 30px;">Mettiamoci in
+                            contatto</h2>
+                        <p
+                            style="font-family: 'Lato', sans-serif; font-size: 11.5pt; color: var(--text-light); line-height: 1.8; margin-bottom: 40px;">
+                            Scegli come preferisci scrivermi. Riceverai una risposta il prima possibile per fissare un
+                            primo colloquio o una valutazione per tuo figlio.
                         </p>
-                        <div class="contact-address">
-                            <h3>Dove trovarmi</h3>
-                            <address>
-                                <p><strong>Via Mazzini 5</strong><br>
-                                    20835 Muggiò (MB)<br>
-                                    Lombardia, Italia</p>
-                            </address>
+
+                        <div class="contact-method">
+                            <div class="icon-circle">📧</div>
+                            <div>
+                                <h3>Email</h3>
+                                <p><a
+                                        href="mailto:veronicatresoldi.tnpee@gmail.com">veronicatresoldi.tnpee@gmail.com</a>
+                                </p>
+                            </div>
                         </div>
-                        <a href="mailto:veronicatresoldi.tnpee@gmail.com" class="btn btn-primary">Scrivi per
-                            prenotare</a>
+
+                        <div class="contact-method">
+                            <div class="icon-circle">📍</div>
+                            <div>
+                                <h3>Studio Professionale</h3>
+                                <p>Via Mazzini 5, 20835 Muggiò (MB)<br>Lombardia, Italia</p>
+                            </div>
+                        </div>
+
+                        <div class="contact-method">
+                            <div class="icon-circle">🕒</div>
+                            <div>
+                                <h3>Orari di Ricevimento</h3>
+                                <p>Lunedì - Venerdì: 09:00 - 19:00<br>Solo su appuntamento</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Form Column -->
+                    <div class="contact-form-card">
+                        <form action="https://formspree.io/f/veronicatresoldi.tnpee@gmail.com" method="POST">
+                            <div class="form-group">
+                                <label for="name">Nome del genitore</label>
+                                <input type="text" id="name" name="name" placeholder="Inserisci il tuo nome" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input type="email" id="email" name="email" placeholder="la-tua-email@esempio.it"
+                                    required>
+                            </div>
+                            <div class="form-group">
+                                <label for="service">Servizio di interesse</label>
+                                <select id="service" name="service">
+                                    <option value="valutazione">Valutazione Neuropsicomotoria</option>
+                                    <option value="trattamento">Trattamento Neuropsicomotorio</option>
+                                    <option value="supporto">Supporto Genitoriale / Parent Coaching</option>
+                                    <option value="altro">Altro</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="message">Come posso aiutarti?</label>
+                                <textarea id="message" name="message"
+                                    placeholder="Descrivi brevemente le necessità di tuo figlio..." required></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary" style="width: 100%; padding: 15px;">Invia
+                                messaggio</button>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -164,22 +214,52 @@
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
-            <p><strong>Veronica Tresoldi</strong> - Neuropsicomotricista</p>
-            <p>Via Mazzini 5, Muggiò (MB) 20835</p>
-            <p><a href="mailto:veronicatresoldi.tnpee@gmail.com">veronicatresoldi.tnpee@gmail.com</a></p>
-            <p style="margin-top: 16px; font-size: 0.875rem;">
-                <a href="privacy-policy.html">Privacy Policy</a> |
-                <a href="cookie-policy.html">Cookie Policy</a>
-            </p>
+            <div class="footer-grid">
+                <!-- Brand Column -->
+                <div class="footer-brand">
+                    <div class="footer-logo">
+                        <img src="images/logo.png" alt="Logo Veronica Tresoldi" width="45" height="45">
+                        <span>Veronica Tresoldi</span>
+                    </div>
+                    <p>Terapista della Neuro e Psicomotricità dell'Età Evolutiva. Specializzata nel supporto allo
+                        sviluppo armonioso del bambino attraverso il gioco e l'empatia.</p>
+                </div>
+
+                <!-- Links Column -->
+                <div class="footer-column">
+                    <h4>Link Rapidi</h4>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home Page</a></li>
+                        <li><a href="chi-sono.html">Chi Sono</a></li>
+                        <li><a href="servizi/index.html">I Miei Servizi</a></li>
+                        <li><a href="faq.html">Domande Frequenti</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contact Column -->
+                <div class="footer-column">
+                    <h4>Contatti</h4>
+                    <div class="footer-contact-item">
+                        <span class="icon">📍</span>
+                        <p>Via Mazzini 5, 20835 Muggiò (MB)</p>
+                    </div>
+                    <div class="footer-contact-item">
+                        <span class="icon">📧</span>
+                        <p><a href="mailto:veronicatresoldi.tnpee@gmail.com">veronicatresoldi.tnpee@gmail.com</a></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2024 Veronica Tresoldi. Tutti i diritti riservati. P.IVA 12345678901</p>
+                <div class="footer-legal">
+                    <a href="privacy-policy.html">Privacy Policy</a>
+                    <a href="cookie-policy.html">Cookie Policy</a>
+                </div>
+            </div>
         </div>
     </footer>
 
-    <!-- WhatsApp Floating Button -->
-    <a href="https://wa.me/393XXXXXXXXX?text=Ciao%20Veronica,%20vorrei%20prenotare%20un%20appuntamento"
-        class="whatsapp-float" aria-label="Contattami su WhatsApp" target="_blank" rel="noopener noreferrer">
-        <img src="images/whatsapp-logo.svg" alt="WhatsApp" width="32" height="32">
-        <span class="tooltip">Scrivimi su WhatsApp</span>
-    </a>
 
     <script src="script.js"></script>
 </body>

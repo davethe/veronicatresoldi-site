@@ -6,7 +6,7 @@ const navLinks = document.querySelectorAll('.nav-link');
 if (navToggle && navMenu) {
     let touchStartX = 0;
     let touchEndX = 0;
-    
+
     // Click/touch toggle
     navToggle.addEventListener('click', (e) => {
         e.preventDefault();
@@ -15,21 +15,21 @@ if (navToggle && navMenu) {
         navMenu.classList.toggle('active');
         navToggle.setAttribute('aria-expanded', !isActive);
     });
-    
+
     // Touch gestures for swipe to close
     navMenu.addEventListener('touchstart', (e) => {
         touchStartX = e.changedTouches[0].screenX;
     }, { passive: true });
-    
+
     navMenu.addEventListener('touchend', (e) => {
         touchEndX = e.changedTouches[0].screenX;
         handleSwipe();
     }, { passive: true });
-    
+
     function handleSwipe() {
         const swipeThreshold = 50;
         const swipeDistance = touchEndX - touchStartX;
-        
+
         // Swipe left to close (if menu is open)
         if (swipeDistance < -swipeThreshold && navMenu.classList.contains('active')) {
             navMenu.classList.remove('active');
@@ -56,7 +56,7 @@ if (navToggle && navMenu) {
             }
         }
     });
-    
+
     // Close on Escape key
     document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape' && navMenu.classList.contains('active')) {
@@ -86,13 +86,13 @@ faqQuestions.forEach(question => {
     question.addEventListener('click', () => {
         const faqItem = question.parentElement;
         const isActive = faqItem.classList.contains('active');
-        
+
         // Close all FAQ items
         document.querySelectorAll('.faq-item').forEach(item => {
             item.classList.remove('active');
             item.querySelector('.faq-question').setAttribute('aria-expanded', 'false');
         });
-        
+
         // Open clicked item if it wasn't active
         if (!isActive) {
             faqItem.classList.add('active');
@@ -101,17 +101,33 @@ faqQuestions.forEach(question => {
     });
 });
 
+// Scroll Reveal Animation
+const revealElements = document.querySelectorAll('.reveal');
+
+const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('active');
+        }
+    });
+}, {
+    threshold: 0.1,
+    rootMargin: '0px 0px -50px 0px'
+});
+
+revealElements.forEach(el => revealObserver.observe(el));
+
 // Navbar background on scroll
-const navbar = document.getElementById('navbar');
+const navbar = document.querySelector('.navbar');
 
 if (navbar) {
     window.addEventListener('scroll', () => {
-        const currentScroll = window.pageYOffset;
-        
-        if (currentScroll > 50) {
-            navbar.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.15)';
+        if (window.scrollY > 50) {
+            navbar.style.backgroundColor = 'rgba(26, 61, 46, 0.98)';
+            navbar.style.padding = '5px 0';
         } else {
-            navbar.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.1)';
+            navbar.style.backgroundColor = 'rgba(26, 61, 46, 0.95)';
+            navbar.style.padding = '0';
         }
     });
 }
