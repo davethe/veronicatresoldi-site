@@ -63,6 +63,7 @@
         media="print" onload="this.media='all'">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="carousel.css">
 
     <!-- Preload critical hero image -->
     <link rel="preload" href="images/trenino-header.webp" as="image" fetchpriority="high">
@@ -413,72 +414,131 @@
         <section class="section testimonials reveal" aria-labelledby="testimonials-title">
             <div class="container">
                 <h2 id="testimonials-title" class="section-title">Cosa dicono i genitori</h2>
-                <div class="testimonials-grid" itemscope itemtype="https://schema.org/Review">
-                    <article class="testimonial-card" itemprop="review" itemscope itemtype="https://schema.org/Review">
-                        <div itemprop="reviewBody">
-                            <p class="testimonial-text">
-                                Veronica ha aiutato nostro figlio con grande professionalità e empatia. Il percorso di
-                                trattamento è stato personalizzato e abbiamo visto miglioramenti significativi.
-                                Consigliatissima!
-                            </p>
-                        </div>
-                        <div class="testimonial-author" itemprop="author" itemscope
-                            itemtype="https://schema.org/Person">
-                            <div>
-                                <div class="testimonial-author-name" itemprop="name">Mamma di Luca, 6 anni</div>
-                                <div class="testimonial-author-role">Monza</div>
-                            </div>
-                        </div>
-                        <div itemprop="reviewRating" itemscope itemtype="https://schema.org/Rating"
-                            class="visually-hidden">
-                            <meta itemprop="ratingValue" content="5">
-                            <meta itemprop="bestRating" content="5">
-                        </div>
-                    </article>
+                <div class="testimonials-carousel-container">
+                    <button class="carousel-control prev" aria-label="Recensione precedente">
+                        <i class="fa-solid fa-chevron-left"></i>
+                    </button>
 
-                    <article class="testimonial-card" itemprop="review" itemscope itemtype="https://schema.org/Review">
-                        <div itemprop="reviewBody">
-                            <p class="testimonial-text">
-                                Il supporto genitoriale di Veronica è stato fondamentale per noi. Ci ha dato strumenti
-                                concreti per gestire le difficoltà quotidiane e migliorare la relazione con nostra
-                                figlia. Grazie!
-                            </p>
-                        </div>
-                        <div class="testimonial-author" itemprop="author" itemscope
-                            itemtype="https://schema.org/Person">
-                            <div>
-                                <div class="testimonial-author-name" itemprop="name">Genitori di Sofia, 5 anni</div>
-                                <div class="testimonial-author-role">Muggiò</div>
-                            </div>
-                        </div>
-                        <div itemprop="reviewRating" itemscope itemtype="https://schema.org/Rating"
-                            class="visually-hidden">
-                            <meta itemprop="ratingValue" content="5">
-                            <meta itemprop="bestRating" content="5">
-                        </div>
-                    </article>
+                    <div class="testimonials-track-container">
+                        <ul class="testimonials-track">
+                            <li class="testimonial-slide active">
+                                <article class="testimonial-card" itemprop="review" itemscope
+                                    itemtype="https://schema.org/Review">
+                                    <div itemprop="reviewBody">
+                                        <p class="testimonial-text">
+                                            Veronica ha aiutato nostro figlio con grande professionalità e empatia. Il
+                                            percorso di
+                                            trattamento è stato personalizzato e abbiamo visto miglioramenti
+                                            significativi.
+                                            Consigliatissima!
+                                        </p>
+                                    </div>
+                                    <div class="testimonial-author" itemprop="author" itemscope
+                                        itemtype="https://schema.org/Person">
+                                        <div>
+                                            <div class="testimonial-author-name" itemprop="name">Mamma di Luca, 3 anni
+                                            </div>
+                                            <div class="testimonial-author-role">Monza</div>
+                                        </div>
+                                    </div>
+                                    <div itemprop="reviewRating" itemscope itemtype="https://schema.org/Rating"
+                                        class="visually-hidden">
+                                        <meta itemprop="ratingValue" content="5">
+                                        <meta itemprop="bestRating" content="5">
+                                    </div>
+                                </article>
+                            </li>
 
-                    <article class="testimonial-card" itemprop="review" itemscope itemtype="https://schema.org/Review">
-                        <div itemprop="reviewBody">
-                            <p class="testimonial-text">
-                                La valutazione è stata molto accurata e ci ha permesso di capire meglio le difficoltà di
-                                nostro figlio. Veronica è competente, paziente e sa come coinvolgere i bambini nel
-                                gioco.
-                            </p>
-                        </div>
-                        <div class="testimonial-author" itemprop="author" itemscope
-                            itemtype="https://schema.org/Person">
-                            <div>
-                                <div class="testimonial-author-name" itemprop="name">Papà di Marco, 7 anni</div>
-                                <div class="testimonial-author-role">Brianza</div>
-                            </div>
-                        </div>
-                        <div itemprop="reviewRating" itemscope itemtype="https://schema.org/Rating"
-                            class="visually-hidden">
-                            <meta itemprop="ratingValue" content="5">
-                            <meta itemprop="bestRating" content="5">
-                        </div>
-                    </article>
+                            <li class="testimonial-slide">
+                                <article class="testimonial-card" itemprop="review" itemscope
+                                    itemtype="https://schema.org/Review">
+                                    <div itemprop="reviewBody">
+                                        <p class="testimonial-text">
+                                            Il supporto genitoriale di Veronica è stato fondamentale per noi. Ci ha dato
+                                            strumenti
+                                            concreti per gestire le difficoltà quotidiane e migliorare la relazione con
+                                            nostra
+                                            figlia. Grazie!
+                                        </p>
+                                    </div>
+                                    <div class="testimonial-author" itemprop="author" itemscope
+                                        itemtype="https://schema.org/Person">
+                                        <div>
+                                            <div class="testimonial-author-name" itemprop="name">Genitori di Sofia, 4
+                                                anni</div>
+                                            <div class="testimonial-author-role">Muggiò</div>
+                                        </div>
+                                    </div>
+                                    <div itemprop="reviewRating" itemscope itemtype="https://schema.org/Rating"
+                                        class="visually-hidden">
+                                        <meta itemprop="ratingValue" content="5">
+                                        <meta itemprop="bestRating" content="5">
+                                    </div>
+                                </article>
+                            </li>
+
+                            <li class="testimonial-slide">
+                                <article class="testimonial-card" itemprop="review" itemscope
+                                    itemtype="https://schema.org/Review">
+                                    <div itemprop="reviewBody">
+                                        <p class="testimonial-text">
+                                            La valutazione è stata molto accurata e ci ha permesso di capire meglio le
+                                            difficoltà di
+                                            nostro figlio. Veronica è competente, paziente e sa come coinvolgere i
+                                            bambini nel
+                                            gioco.
+                                        </p>
+                                    </div>
+                                    <div class="testimonial-author" itemprop="author" itemscope
+                                        itemtype="https://schema.org/Person">
+                                        <div>
+                                            <div class="testimonial-author-name" itemprop="name">Papà di Marco, 6 anni
+                                            </div>
+                                            <div class="testimonial-author-role">Brianza</div>
+                                        </div>
+                                    </div>
+                                    <div itemprop="reviewRating" itemscope itemtype="https://schema.org/Rating"
+                                        class="visually-hidden">
+                                        <meta itemprop="ratingValue" content="5">
+                                        <meta itemprop="bestRating" content="5">
+                                    </div>
+                                </article>
+                            </li>
+
+                            <li class="testimonial-slide">
+                                <article class="testimonial-card" itemprop="review" itemscope
+                                    itemtype="https://schema.org/Review">
+                                    <div itemprop="reviewBody">
+                                        <p class="testimonial-text">
+                                            Grazie al percorso neuropsicomotorio, Alessandro ha acquisito molta più
+                                            sicurezza nei movimenti
+                                            e nel relazionarsi con gli altri bambini al parco. Un cambiamento
+                                            incredibile!
+                                        </p>
+                                    </div>
+                                    <div class="testimonial-author" itemprop="author" itemscope
+                                        itemtype="https://schema.org/Person">
+                                        <div>
+                                            <div class="testimonial-author-name" itemprop="name">Mamma di Alessandro, 5
+                                                anni</div>
+                                            <div class="testimonial-author-role">Lissone</div>
+                                        </div>
+                                    </div>
+                                    <div itemprop="reviewRating" itemscope itemtype="https://schema.org/Rating"
+                                        class="visually-hidden">
+                                        <meta itemprop="ratingValue" content="5">
+                                        <meta itemprop="bestRating" content="5">
+                                    </div>
+                                </article>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <button class="carousel-control next" aria-label="Recensione successiva">
+                        <i class="fa-solid fa-chevron-right"></i>
+                    </button>
+
+                    <div class="carousel-dots"></div>
                 </div>
             </div>
         </section>
