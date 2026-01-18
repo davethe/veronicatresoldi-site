@@ -65,6 +65,7 @@
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="carousel.css">
 
+
     <!-- Preload critical hero image -->
     <link rel="preload" href="images/trenino-header.webp" as="image" fetchpriority="high">
     <link rel="preload" href="images/logo.png" as="image">
@@ -110,8 +111,8 @@
         "openingHoursSpecification": {
             "@type": "OpeningHoursSpecification",
             "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
-            "opens": "09:00",
-            "closes": "19:00"
+            "opens": "16:30",
+            "closes": "20:00"
         },
         "aggregateRating": {
             "@type": "AggregateRating",
@@ -603,6 +604,21 @@
     </footer>
 
 
+    <!-- Review Modal -->
+    <div id="review-modal" class="review-modal" aria-hidden="true">
+        <div class="review-modal-content">
+            <span class="review-modal-close">&times;</span>
+            <div class="review-modal-body">
+                <p id="review-modal-text"></p>
+                <div class="review-modal-author">
+                    <strong id="review-modal-author-name"></strong>
+                    <span id="review-modal-author-role"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="carousel.js"></script>
     <script src="script.js"></script>
 </body>
 

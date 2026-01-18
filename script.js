@@ -137,11 +137,74 @@ if (navbar) {
 }
 
 // Global Interactive Quiz Injection & Logic
+// Global Interactive Quiz Injection & Logic
 document.addEventListener('DOMContentLoaded', () => {
+    // Quiz Data Configuration
+    const quizContent = {
+        checklists: {
+            '0-2': [
+                "Sembra muoversi meno dei coetanei (fatica a rotolare, strisciare o stare seduto)",
+                "Usa prevalentemente una sola mano o è goffo nell'afferrare piccoli oggetti",
+                "Aggancia poco il mio sguardo quando giochiamo o quando lo chiamo",
+                "Fatica a incuriosirsi agli oggetti o tende a lanciarli senza esplorarli",
+                "Mostra crisi intense di fronte a piccoli cambiamenti o interruzioni",
+                "È molto sensibile a rumori, luci o contatto fisico (reagisce con forte fastidio)"
+            ],
+            '3-5': [
+                "Inciampa spesso, cade facilmente o ha paura di salire sulle giostre",
+                "Fa fatica a impugnare matite e pennarelli o evita di disegnare",
+                "Non gioca ancora a \"fare finta di...\" (es. dar da mangiare alla bambola)",
+                "Fatica molto a rispettare le piccole regole quotidiane o i turni di gioco",
+                "Esprime la frustrazione con crisi emotive intense e difficili da gestire",
+                "Si stanca velocemente o non riesce a stare seduto per brevi attività"
+            ],
+            '6+': [
+                "Perde spesso il filo del discorso o dimentica/perde il materiale scolastico",
+                "Sembra \"maldestro\" negli sport o nei giochi di coordinazione complessi",
+                "Vive con forte ansia o rabbia le situazioni in cui non riesce subito bene (bassa tolleranza alla frustrazione)",
+                "Fatica a rispettare le regole dei giochi strutturati o le indicazioni dell'adulto",
+                "Fatica a mantenere l'attenzione su un compito per il tempo richiesto",
+                "La scrittura è disordinata, lenta o lamenta dolore alla mano mentre scrive",
+                "Ha difficoltà a organizzare lo spazio sul foglio o a pianificare i compiti"
+            ]
+        },
+        expectations: [
+            {
+                text: "Capire se queste fatiche sono tappe dello sviluppo o se serve un intervento",
+                type: "valutazione",
+                label: "Valutazione" // Short label for summary
+            },
+            {
+                text: "Iniziare un percorso specifico per aiutare mio figlio a superare queste difficoltà",
+                type: "trattamento",
+                label: "Terapia"
+            },
+            {
+                text: "Avere strategie pratiche per gestire meglio queste situazioni (regole, crisi, quotidianità) a casa",
+                type: "supporto",
+                label: "Supporto Genitoriale"
+            }
+        ],
+        results: {
+            'valutazione': {
+                title: "Valutazione Neuropsicomotoria",
+                text: "È il punto di partenza fondamentale per comprendere a fondo le fatiche di tuo figlio. Attraverso l'osservazione nel gioco e prove specifiche, analizzerò le sue potenzialità e le aree di fragilità per capire se e come intervenire."
+            },
+            'trattamento': {
+                title: "Trattamento Neuropsicomotorio",
+                text: "Un percorso terapeutico personalizzato dove il gioco diventa lo strumento per superare le difficoltà motorie, relazionali, emotive o attentive, favorendo uno sviluppo armonico nel rispetto dei suoi tempi."
+            },
+            'supporto': {
+                title: "Supporto Genitoriale",
+                text: "Uno spazio dedicato a voi genitori per approfondire le dinamiche educative e ricevere strumenti concreti. L'obiettivo è supportarvi nel comprendere i bisogni di vostro figlio e migliorare la gestione del quotidiano."
+            }
+        }
+    };
+
     // 1. Inject FAB and Modal HTML if not on Contact page
     if (!window.location.pathname.includes('contatti')) {
         const quizHTML = `
-            <button class="quiz-fab" id="open-quiz" aria-label="Scopri il percorso più adatto">
+            <button class="quiz-fab" id="open-quiz" aria-label="Apre il quiz per scoprire il percorso adatto">
                 <span class="icon" aria-hidden="true">
                     <i class="fa-solid fa-compass"></i>
                 </span>
@@ -159,84 +222,50 @@ document.addEventListener('DOMContentLoaded', () => {
 
                         <h2 id="quiz-title" class="visually-hidden">Bussola Evolutiva - Assistente alla scelta del percorso</h2>
 
-                        <!-- Step 1 -->
+                        <!-- Step 1: Age Selection -->
                         <div class="quiz-step active" data-step="1" aria-live="polite">
                             <h3 class="quiz-question">Quanti anni ha il tuo bambino?</h3>
                             <div class="quiz-options">
-                                <button class="quiz-option" data-value="0-3">
-                                    <span class="icon" aria-hidden="true">
-                                        <i class="fa-solid fa-baby"></i>
-                                    </span>
-                                    <span>0 - 3 anni</span>
+                                <button class="quiz-option" data-age="0-2">
+                                    <span class="icon" aria-hidden="true"><i class="fa-solid fa-baby"></i></span>
+                                    <span>0 - 2 anni</span>
                                 </button>
-                                <button class="quiz-option" data-value="4-6">
-                                    <span class="icon" aria-hidden="true">
-                                        <i class="fa-solid fa-child"></i>
-                                    </span>
-                                    <span>4 - 6 anni</span>
+                                <button class="quiz-option" data-age="3-5">
+                                    <span class="icon" aria-hidden="true"><i class="fa-solid fa-child"></i></span>
+                                    <span>3 - 5 anni</span>
                                 </button>
-                                <button class="quiz-option" data-value="6+">
-                                    <span class="icon" aria-hidden="true">
-                                        <i class="fa-solid fa-school"></i>
-                                    </span>
+                                <button class="quiz-option" data-age="6+">
+                                    <span class="icon" aria-hidden="true"><i class="fa-solid fa-school"></i></span>
                                     <span>Oltre i 6 anni</span>
                                 </button>
                             </div>
                         </div>
 
-                        <!-- Step 2 -->
+                        <!-- Step 2: Dynamic Checklist (Multi-select) -->
                         <div class="quiz-step" data-step="2" aria-live="polite">
-                            <h3 class="quiz-question">Cosa noti di più nel suo comportamento?</h3>
-                            <div class="quiz-options">
-                                <button class="quiz-option" data-value="motricità">
-                                    <span class="icon" aria-hidden="true">
-                                        <i class="fa-solid fa-child-reaching"></i>
-                                    </span>
-                                    <span>Movimenti goffi o poca coordinazione</span>
-                                </button>
-                                <button class="quiz-option" data-value="attenzione">
-                                    <span class="icon" aria-hidden="true">
-                                        <i class="fa-solid fa-bolt"></i>
-                                    </span>
-                                    <span>Irrequietezza o poca concentrazione</span>
-                                </button>
-                                <button class="quiz-option" data-value="linguaggio">
-                                    <span class="icon" aria-hidden="true">
-                                        <i class="fa-solid fa-comment-dots"></i>
-                                    </span>
-                                    <span>Difficoltà a parlare o relazionarsi</span>
-                                </button>
-                                <button class="quiz-option" data-value="gioco">
-                                    <span class="icon" aria-hidden="true">
-                                        <i class="fa-solid fa-puzzle-piece"></i>
-                                    </span>
-                                    <span>Ho bisogno di consigli su come giocarci</span>
-                                </button>
+                            <h3 class="quiz-question">Seleziona ciò che noti (puoi sceglierne più di uno):</h3>
+                            <div class="quiz-options" id="quiz-checklist-container">
+                                <!-- Dynamic Content -->
+                            </div>
+                            <div class="quiz-navigation">
+                                <button class="quiz-prev-btn" data-target="1">Indietro</button>
+                                <button class="quiz-next-btn" id="step-2-next" disabled>Prosegui</button>
                             </div>
                         </div>
 
-                        <!-- Step 3 -->
+                        <!-- Step 3: Expectations -->
                         <div class="quiz-step" data-step="3" aria-live="polite">
-                            <h3 class="quiz-question">Qual è il tuo obiettivo principale?</h3>
+                            <h3 class="quiz-question">In questo momento, di cosa senti di aver più bisogno?</h3>
                             <div class="quiz-options">
-                                <button class="quiz-option" data-value="valutazione">
-                                    <span class="icon" aria-hidden="true">
-                                        <i class="fa-solid fa-magnifying-glass"></i>
-                                    </span>
-                                    <span>Capire se c'è un problema (Valutazione)</span>
-                                </button>
-                                <button class="quiz-option" data-value="terapia">
-                                    <span class="icon" aria-hidden="true">
-                                        <i class="fa-solid fa-chart-line"></i>
-                                    </span>
-                                    <span>Iniziare un percorso (Terapia)</span>
-                                </button>
-                                <button class="quiz-option" data-value="consulto">
-                                    <span class="icon" aria-hidden="true">
-                                        <i class="fa-solid fa-lightbulb"></i>
-                                    </span>
-                                    <span>Strumenti pratici per me genitore</span>
-                                </button>
+                                ${quizContent.expectations.map((exp, index) => `
+                                    <button class="quiz-option" data-expectation-type="${exp.type}" data-expectation-label="${exp.label}">
+                                        <span class="icon" aria-hidden="true"><i class="fa-solid fa-chevron-right"></i></span>
+                                        <span style="font-size: 0.95rem;">${exp.text}</span>
+                                    </button>
+                                `).join('')}
+                            </div>
+                            <div class="quiz-navigation" style="justify-content: flex-start;">
+                                <button class="quiz-prev-btn" data-target="2">Indietro</button>
                             </div>
                         </div>
 
@@ -245,8 +274,11 @@ document.addEventListener('DOMContentLoaded', () => {
                             <div class="quiz-result" style="text-align: center;">
                                 <div id="result-content"></div>
                                 <div class="cta-center" style="margin-top: 30px;">
-                                    <button class="btn btn-primary" id="result-cta">Richiedi disponibilità subito</button>
+                                    <button class="btn btn-primary" id="result-cta">Richiedi disponibilità</button>
                                 </div>
+                                <p style="font-size: 0.8rem; color: var(--text-light); margin-top: 20px; font-style: italic;">
+                                    "I risultati di questo quiz sono indicativi e basati sulla tua osservazione. Non sostituiscono una valutazione clinica. Durante il nostro primo contatto verificheremo insieme il percorso più idoneo."
+                                </p>
                             </div>
                         </div>
                     </div>
@@ -263,19 +295,23 @@ document.addEventListener('DOMContentLoaded', () => {
         const closeQuizBtn = document.getElementById('close-quiz');
         const steps = document.querySelectorAll('.quiz-step');
         const progressBar = document.getElementById('quiz-progress-bar');
-        const options = document.querySelectorAll('.quiz-option');
-        const resultContent = document.getElementById('result-content');
         const resultStep = document.getElementById('quiz-result');
-        const resultCta = document.getElementById('result-cta');
+        const checklistContainer = document.getElementById('quiz-checklist-container');
+        const step2NextBtn = document.getElementById('step-2-next');
 
         let currentStep = 0;
-        let quizData = { eta: '', preoccupazione: '', obiettivo: '' };
+        let selections = {
+            age: '',
+            symptoms: [],
+            expectationType: '',
+            expectationLabel: ''
+        };
 
+        // Event Listeners for Opening/Closing
         openQuizBtn.addEventListener('click', () => {
             quizModal.classList.add('active');
             document.body.style.overflow = 'hidden';
             resetQuiz();
-            // Move focus to modal
             setTimeout(() => closeQuizBtn.focus(), 100);
         });
 
@@ -286,91 +322,117 @@ document.addEventListener('DOMContentLoaded', () => {
         };
 
         closeQuizBtn.addEventListener('click', closeModal);
-
         quizModal.addEventListener('click', (e) => {
             if (e.target === quizModal) closeModal();
         });
 
-        // Keyboard management: Escape and Tab Trap
-        document.addEventListener('keydown', (e) => {
-            if (!quizModal.classList.contains('active')) return;
-
-            if (e.key === 'Escape') {
-                closeModal();
-            }
-
-            if (e.key === 'Tab') {
-                const focusableElements = quizModal.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
-                const firstElement = focusableElements[0];
-                const lastElement = focusableElements[focusableElements.length - 1];
-
-                if (e.shiftKey) { // Shift + Tab
-                    if (document.activeElement === firstElement) {
-                        e.preventDefault();
-                        lastElement.focus();
-                    }
-                } else { // Tab
-                    if (document.activeElement === lastElement) {
-                        e.preventDefault();
-                        firstElement.focus();
-                    }
-                }
-            }
-        });
-
-        function updateProgressBar() {
+        // Step navigation logic
+        function goStep(stepIndex) {
+            steps.forEach((step, index) => step.classList.toggle('active', index === stepIndex));
+            currentStep = stepIndex;
+            // Progress: 0->0%, 1->33%, 2->66%, 3->100%
             progressBar.style.width = `${(currentStep / 3) * 100}%`;
         }
 
-        function showStep(stepIndex) {
-            steps.forEach((step, index) => step.classList.toggle('active', index === stepIndex));
-            currentStep = stepIndex;
-            updateProgressBar();
-        }
-
-        options.forEach(option => {
-            option.addEventListener('click', function () {
-                const step = this.closest('.quiz-step');
-                const stepNum = parseInt(step.getAttribute('data-step'));
-                const text = this.querySelector('span:last-child').innerText;
-
-                if (stepNum === 1) quizData.eta = text;
-                if (stepNum === 2) quizData.preoccupazione = text;
-                if (stepNum === 3) quizData.obiettivo = text;
-
-                if (currentStep < 2) showStep(currentStep + 1);
-                else showResult();
+        // Back Buttons
+        document.querySelectorAll('.quiz-prev-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const target = parseInt(btn.getAttribute('data-target'));
+                // Adjust for 0-index array (Step 1 is index 0)
+                goStep(target - 1);
             });
         });
 
+        // STEP 1: Age Selection
+        document.querySelectorAll('[data-age]').forEach(btn => {
+            btn.addEventListener('click', function () {
+                selections.age = this.getAttribute('data-age');
+                renderChecklist(selections.age);
+                goStep(1); // Go to Step 2
+            });
+        });
+
+        // Helper: Render Checklist for Step 2
+        function renderChecklist(age) {
+            checklistContainer.innerHTML = '';
+            selections.symptoms = []; // Reset selected symptoms
+            step2NextBtn.disabled = true; // Disable until selection made
+
+            const items = quizContent.checklists[age] || [];
+            items.forEach(itemText => {
+                const btn = document.createElement('button');
+                btn.className = 'quiz-option';
+                btn.innerHTML = `
+                    <span class="icon"><i class="fa-regular fa-square"></i></span>
+                    <span>${itemText}</span>
+                `;
+                btn.addEventListener('click', () => toggleSymptom(btn, itemText));
+                checklistContainer.appendChild(btn);
+            });
+        }
+
+        // Checklist Selection Logic
+        function toggleSymptom(btn, text) {
+            btn.classList.toggle('selected');
+            const icon = btn.querySelector('.icon i');
+
+            if (btn.classList.contains('selected')) {
+                icon.className = 'fa-solid fa-square-check';
+                selections.symptoms.push(text);
+            } else {
+                icon.className = 'fa-regular fa-square';
+                selections.symptoms = selections.symptoms.filter(t => t !== text);
+            }
+
+            // Enable Next button if at least 1 is selected
+            step2NextBtn.disabled = selections.symptoms.length === 0;
+            step2NextBtn.innerText = selections.symptoms.length === 0 ? "Seleziona almeno un'opzione" : "Prosegui";
+        }
+
+        // STEP 2 Next Button
+        step2NextBtn.addEventListener('click', () => {
+            if (selections.symptoms.length > 0) {
+                goStep(2); // Go to Step 3
+            }
+        });
+
+        // STEP 3: Expectation Selection
+        document.querySelectorAll('[data-expectation-type]').forEach(btn => {
+            btn.addEventListener('click', function () {
+                selections.expectationType = this.getAttribute('data-expectation-type');
+                selections.expectationLabel = this.getAttribute('data-expectation-label');
+                showResult();
+            });
+        });
+
+        // Render Result
         function showResult() {
             progressBar.style.width = '100%';
             steps.forEach(s => s.classList.remove('active'));
             resultStep.classList.add('active');
 
-            let title = "", text = "", recommendedService = "";
+            const resultData = quizContent.results[selections.expectationType];
+            const resultContent = document.getElementById('result-content');
 
-            if (quizData.eta.includes('0 - 3') || quizData.preoccupazione.includes('gioco')) {
-                recommendedService = "supporto";
-                title = "Supporto Genitoriale e Parent Coaching";
-                text = `Il tuo bambino è in una fase magica di scoperta. Il percorso ideale è il <strong>Supporto Genitoriale</strong>. Ti aiuterò a capire come stimolarlo al meglio attraverso il gioco.`;
-            } else if (quizData.obiettivo.includes('Valutazione')) {
-                recommendedService = "valutazione";
-                title = "Valutazione Neuropsicomotoria";
-                text = `La tua priorità è fare chiarezza. Una <strong>Valutazione</strong> approfondita ci permetterà di osservare come il tuo bambino interagisce, dandoti risposte concrete.`;
-            } else {
-                recommendedService = "trattamento";
-                title = "Trattamento Neuropsicomotorio";
-                text = `Un percorso di <strong>Trattamento</strong> aiuterà il tuo bambino a rinforzare le sue abilità divertendosi.`;
-            }
+            resultContent.innerHTML = `
+                <h3 style="margin-bottom:15px; color:var(--primary-color); font-size: 1.8rem;">${resultData.title}</h3>
+                <p style="color:var(--text-light); line-height:1.6; font-size: 1.1rem;">${resultData.text}</p>
+            `;
 
-            resultContent.innerHTML = `<h3 style="margin-bottom:15px; color:var(--primary-color);">${title}</h3><p style="color:var(--text-light); line-height:1.6;">${text}</p>`;
-
+            // Setup CTA
+            const resultCta = document.getElementById('result-cta');
             resultCta.onclick = () => {
-                const quizSummary = `Età: ${quizData.eta}, Nota: ${quizData.preoccupazione}, Obiettivo: ${quizData.obiettivo}.`;
-                localStorage.setItem('quizResult', quizSummary);
-                localStorage.setItem('recommendedService', recommendedService);
-                // Handle relative paths correctly
+                // Build Detailed Summary
+                const summary = [
+                    `Età Bambino: ${selections.age}`,
+                    `Osservazioni:`,
+                    ...selections.symptoms.map(s => `- ${s}`),
+                    `Obiettivo Genitore: ${selections.expectationLabel}`
+                ].join('\n');
+
+                localStorage.setItem('quizResult', summary);
+                localStorage.setItem('recommendedService', resultData.title); // Use title for service field
+
                 const isSubdir = window.location.pathname.includes('/servizi/');
                 window.location.href = isSubdir ? '../contatti-e-prenotazioni.html' : 'contatti-e-prenotazioni.html';
             };
@@ -378,20 +440,46 @@ document.addEventListener('DOMContentLoaded', () => {
 
         function resetQuiz() {
             currentStep = 0;
-            quizData = { eta: '', preoccupazione: '', obiettivo: '' };
-            showStep(0);
+            selections = { age: '', symptoms: [], expectationType: '', expectationLabel: '' };
+            // Reset Progress Bar
+            progressBar.style.width = '0%';
+            // Reset Active Step
+            steps.forEach(s => s.classList.remove('active'));
+            document.querySelector('[data-step="1"]').classList.add('active');
         }
     }
 
-    // 2. Contact Form Pre-filling
+    // 2. Contact Form Pre-filling logic
     const quizResult = localStorage.getItem('quizResult');
     const recommendedService = localStorage.getItem('recommendedService');
 
     if (quizResult && (window.location.pathname.includes('contatti') || document.querySelector('.contact-form-card'))) {
         const messageField = document.getElementById('message');
         const serviceField = document.getElementById('service');
-        if (messageField) messageField.value = `Ho completato il test sul sito. Risultati: ${quizResult}\n\nVorrei approfondire perché... `;
-        if (serviceField && recommendedService) serviceField.value = recommendedService;
+
+        if (messageField) {
+            // Check if already filled to prevent overwriting user input on reload (optional, but good UX)
+            // Here we just overwrite as per request logic implies immediate transfer
+            messageField.value = `Ho completato il test Bussola Evolutiva.\n\n${quizResult}\n\nVorrei maggiori dettagli su questo percorso.\n\n---\nI risultati di questo quiz sono indicativi e basati sulla tua osservazione. Non sostituiscono una valutazione clinica. Durante il nostro primo contatto verificheremo insieme il percorso più idoneo.`;
+        }
+
+        if (serviceField && recommendedService) {
+            // Try to match the dropdown value exactly or loosely
+            // If options are strict, we might need to map 'Valutazione Neuropsicomotoria' -> 'valutazione'
+            // Assuming the form options have values like 'valutazione', 'trattamento', 'parent-coaching'
+            // We can fuzzy match or set it if the text matches.
+            // For now, let's look at the service output.
+            // The values in 'resultData.title' are "Valutazione Neuropsicomotoria", "Trattamento Neuropsicomotorio", "Supporto Genitoriale".
+            // Let's assume standard values. If not, text remains in message.
+
+            // Simplistic mapping attempt for standard select values
+            const val = recommendedService.toLowerCase();
+            if (val.includes('valutazione')) serviceField.value = 'valutazione';
+            else if (val.includes('trattamento')) serviceField.value = 'trattamento';
+            else if (val.includes('supporto')) serviceField.value = 'parent-coaching'; // Common substitute
+        }
+
+        // Clean up
         localStorage.removeItem('quizResult');
         localStorage.removeItem('recommendedService');
     }

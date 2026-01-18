@@ -131,4 +131,60 @@ document.addEventListener('DOMContentLoaded', () => {
         const targetIndex = dots.findIndex(dot => dot === targetDot);
         updateCarousel(targetIndex);
     });
+
+
+    // --- Review Modal Logic ---
+    const modal = document.getElementById('review-modal');
+    const modalText = document.getElementById('review-modal-text');
+    const modalAuthorName = document.getElementById('review-modal-author-name');
+    const modalAuthorRole = document.getElementById('review-modal-author-role');
+    const closeModal = document.querySelector('.review-modal-close');
+    const testimonialCards = document.querySelectorAll('.testimonial-card');
+
+    testimonialCards.forEach(card => {
+        card.addEventListener('click', () => {
+            // Get data from the clicked card
+            // Note: We might need to handle truncation. 
+            // Ideally, we should store the full text in a data attribute? 
+            // OR just read the textContent if it's not fully removed from DOM 
+            // (CSS line-clamp just hides it visually).
+            // Yes, line-clamp leaves the text in the DOM. textContent gets the full text.
+
+            const text = card.querySelector('.testimonial-text').textContent;
+            const authorName = card.querySelector('.testimonial-author-name').textContent;
+            const authorRole = card.querySelector('.testimonial-author-role').textContent;
+
+            modalText.textContent = text;
+            modalAuthorName.textContent = authorName;
+            modalAuthorRole.textContent = authorRole;
+
+            modal.classList.add('active');
+            modal.setAttribute('aria-hidden', 'false');
+            document.body.style.overflow = 'hidden'; // Prevent background scrolling
+        });
+    });
+
+    const hideModal = () => {
+        modal.classList.remove('active');
+        modal.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+    };
+
+    if (closeModal) {
+        closeModal.addEventListener('click', hideModal);
+    }
+
+    // Close on click outside
+    window.addEventListener('click', (e) => {
+        if (e.target === modal) {
+            hideModal();
+        }
+    });
+
+    // Close on Escape key
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && modal.classList.contains('active')) {
+            hideModal();
+        }
+    });
 });

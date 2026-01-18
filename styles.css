@@ -595,6 +595,14 @@ img {
     box-shadow: var(--shadow-lg);
 }
 
+.content-image img {
+    width: 100%;
+    height: 600px;
+    object-fit: cover;
+    object-position: top;
+    border-radius: 30px;
+}
+
 .service-card-content p {
     flex: 1;
     margin-bottom: 24px;
@@ -735,6 +743,15 @@ img {
     color: var(--primary-color);
     margin-bottom: 15px;
     font-size: 1.8rem;
+}
+
+/* Chi Sono Image Cropping */
+.chi-sono-image img {
+    width: 100%;
+    height: 450px;
+    object-fit: cover;
+    object-position: top;
+    border-radius: 30px;
 }
 
 /* Formazione Timeline */
@@ -2272,4 +2289,143 @@ button.quiz-option:focus {
 
 .quiz-close:hover {
     color: var(--accent-color);
+}
+
+/* Multi-select Styles */
+.quiz-option.selected {
+    background-color: var(--accent-light);
+    border-color: var(--accent-color);
+    font-weight: 700;
+}
+
+.quiz-option.selected .icon {
+    color: var(--accent-color);
+}
+
+.quiz-navigation {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 20px;
+    gap: 10px;
+}
+
+.quiz-prev-btn {
+    background: none;
+    border: none;
+    color: var(--text-light);
+    font-family: 'Lato', sans-serif;
+    font-size: 0.9rem;
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.quiz-next-btn {
+    background-color: var(--primary-color);
+    color: var(--text-white);
+    border: none;
+    padding: 10px 25px;
+    border-radius: 50px;
+    font-family: 'Lato', sans-serif;
+    font-weight: 700;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.quiz-next-btn:hover {
+    background-color: var(--primary-hover);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow);
+}
+
+.quiz-next-btn:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+/* Review Modal Styles */
+.review-modal {
+    display: none;
+    position: fixed;
+    z-index: 2000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(5px);
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.review-modal.active {
+    display: flex;
+    animation: fadeIn 0.3s ease;
+}
+
+.review-modal-content {
+    background-color: var(--bg-color);
+    padding: 40px;
+    border-radius: 30px;
+    max-width: 600px;
+    width: 100%;
+    position: relative;
+    box-shadow: var(--shadow-lg);
+    border: 1px solid var(--border-color);
+}
+
+.review-modal-close {
+    position: absolute;
+    top: 20px;
+    right: 25px;
+    font-size: 2rem;
+    cursor: pointer;
+    color: var(--text-light);
+    line-height: 1;
+    transition: var(--transition);
+}
+
+.review-modal-close:hover {
+    color: var(--primary-color);
+}
+
+.review-modal-body p {
+    font-size: 1.2rem;
+    font-style: italic;
+    color: var(--text-color);
+    margin-bottom: 25px;
+    line-height: 1.6;
+    font-family: 'Merriweather', serif;
+}
+
+.review-modal-author {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    border-top: 1px solid var(--border-color);
+    padding-top: 15px;
+}
+
+.review-modal-author strong {
+    font-family: 'Lato', sans-serif;
+    color: var(--primary-color);
+    font-size: 1.1rem;
+}
+
+.review-modal-author span {
+    font-size: 0.95rem;
+    color: var(--text-light);
+}
+
+/* Make testimonial cards clickable */
+.testimonial-card {
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.testimonial-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg);
 }
