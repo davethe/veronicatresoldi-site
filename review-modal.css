@@ -83,3 +83,9 @@
     transform: translateY(-5px);
     box-shadow: var(--shadow-lg);
 }
+
+@media (max-width: 768px) {
+    .review-modal-content {
+        padding: 30px 20px;
+    }
+}
