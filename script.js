@@ -481,6 +481,41 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Clean up
         localStorage.removeItem('quizResult');
-        localStorage.removeItem('recommendedService');
-    }
-});
+
+        // 3. EmailJS Form Handling
+        const contactForm = document.getElementById('contact-form');
+        if (contactForm) {
+            contactForm.addEventListener('submit', function (event) {
+                event.preventDefault();
+
+                // Show loading state on button
+                const submitBtn = contactForm.querySelector('button[type="submit"]');
+                const originalBtnText = submitBtn.innerText;
+                submitBtn.disabled = true;
+                submitBtn.innerText = 'Invio in corso...';
+
+                // Parameters for EmailJS
+                const serviceID = 'service_v4zydxn';
+                const templateID = 'template_cgp5o94';
+
+                emailjs.sendForm(serviceID, templateID, this)
+                    .then(() => {
+                        submitBtn.innerText = 'Messaggio inviato!';
+                        submitBtn.style.backgroundColor = '#1a3d2e'; // Feedback success color
+                        contactForm.reset();
+                        alert('Grazie! Il tuo messaggio è stato inviato correttamente. Ti risponderò il prima possibile.');
+
+                        // Reset button after 5 seconds
+                        setTimeout(() => {
+                            submitBtn.disabled = false;
+                            submitBtn.innerText = originalBtnText;
+                            submitBtn.style.backgroundColor = '';
+                        }, 5000);
+                    }, (err) => {
+                        submitBtn.disabled = false;
+                        submitBtn.innerText = originalBtnText;
+                        alert('Si è verificato un errore durante l\'invio. Per favore riprova o scrivimi direttamente a veronicatresoldi.tnpee@gmail.com.\n\nErrore: ' + JSON.stringify(err));
+                    });
+            });
+        }
+    });
