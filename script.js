@@ -497,7 +497,7 @@ document.addEventListener('DOMContentLoaded', () => {
             submitBtn.innerText = 'Invio in corso...';
 
             // Parameters for EmailJS
-            const serviceID = 'service_v4zydxn';
+            const serviceID = 'service_grl7mok';
             const templateID = 'template_cgp5o94';
 
             emailjs.sendForm(serviceID, templateID, this)
